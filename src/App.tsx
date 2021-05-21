@@ -27,9 +27,9 @@ export default App;*/
 
 import * as React from 'react';
 import './App.css';
-import Header from './components/Header';
-import Wrapper from './components/Wrapper';
-import Footer from './components/Footer';
+//import Header from './components/Header';
+//import Wrapper from './components/Wrapper';
+//import Footer from './components/Footer';
 import Main from './components/Main';
 
 //import logo from './logo.svg';
@@ -47,14 +47,28 @@ import Main from './components/Main';
 //   }
 // }
 
+
 const App = () => {
   return (
-    <Wrapper>
-      <Header />
-        <Main> </ Main> 
-      <Footer />
-    </Wrapper>
+    <div className="page">
+      <header className="header">
+          <h1 className="header__text">
+            <span className="header__title header__title_left">Weather</span>
+            <span className="header__title header__title_right">forecast</span>
+          </h1>
+        </header>
+
+
+
+        <Main /> 
+
+
+
+      <footer className="footer">
+        C ЛЮБОВЬЮ ОТ MERCURY DEVELOPMENT
+      </footer>
+    </div>
   )
 }  
 
-export default App;
+export default App
