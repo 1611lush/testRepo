@@ -3,8 +3,6 @@ import CardDaily from './CardDaily';
 import CardPast from './CardPast';
 import {API_KEY, BASE_URL} from '../data/config';
 
-//import { useState } from 'react';
-
 
 const cities = [
 	[
@@ -24,7 +22,6 @@ const cities = [
 	]
 ]
 
- 	// const [city, SetCity] = React.useState<Key>('Samara')
 	   
 const cityTest = ["Samara", "Tolyatti", "Saratov","Kazan","Krasnodar"]
 

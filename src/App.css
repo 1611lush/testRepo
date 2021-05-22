@@ -613,7 +613,7 @@ body {
 }
 
 .forecast__cities{
-  //display: none;
+  display: none;
 }
 
 .forecast__inputs > div {
