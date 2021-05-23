@@ -474,6 +474,9 @@ body {
   background-image: url(./images/chevron-bottom.svg); 
 }
 
+.forecast__select-up::after  {
+  transform: rotate(180deg);
+}
 
 
 .forecast__select.forecast__select-open::after {
@@ -574,6 +577,11 @@ body {
   background-position-y: calc(100% - 15px);
 } */
 
+.forecast__select span {
+  width: 100%;
+  display: inline-block;
+}
+
 .forecast__select:hover,
 .forecast__input:hover {
   border: 2px solid #8083A4;
@@ -612,9 +620,6 @@ body {
   //margin-top: 54px;
 }
 
-.forecast__cities{
-  display: none;
-}
 
 .forecast__inputs > div {
   width: 252px;
