@@ -322,11 +322,20 @@ body {
 .page::before {  
     background-position:  bottom left;
     background-image: url(./images/forecast-Bg-buttom@2x.png);
-    
+  /*   background-image: 
+    image-set(
+      url(assets/forecast-Bg-buttom.png) 1x,
+      url(assets/forecast-Bg-buttom@2x.png) 2x,
+    ); */    
 }
 .page::after {
     background-position:  top right;
-    background-image: url(./images/forecast-Bg-up.png);   
+    background-image: url(./images/forecast-Bg-up.png);  
+    /*   background-image: 
+    image-set(
+      url(assets/forecast-Bg-up.png) 1x,
+      url(assets/forecast-Bg-up@2x.png) 2x,
+    ); */    
 }
 
 .header {
@@ -667,16 +676,23 @@ body {
 }
 
 .slider {
+  overflow: hidden;
+  position: relative;
+  padding-left: 20px;
+  margin-left: -20px;
+  padding-right: 20px;
+  margin-right: -40px;
+}
+.slider__inner{
   display: flex;
     flex-wrap: nowrap;
     overflow-x: hidden;
     position: relative;
     gap: 10px;
     /*??*/
-    margin: 0px 0 -55px 0;
-    padding: 0px 0 35px 0;
+    //margin: 0px 0 -55px 0;
+    //padding: 0px 0 35px 0;
 }
-
 .slider__left,
 .slider__right {
   background-image: url(./images/chevron-left.svg); 
@@ -687,12 +703,13 @@ body {
   background-repeat: no-repeat;
   top: calc(50% - 12px);
   margin-left: -25px;
+  z-index: 1;
 }
 
 .slider__right {
   transform: rotate(180deg);
   left: 100%;
-  margin-left: 15px;
+  margin-left: -22px;
 }
 
 .slider .forecast__result_full {

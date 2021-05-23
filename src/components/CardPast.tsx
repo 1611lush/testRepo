@@ -1,4 +1,6 @@
 import * as React from 'react';
+
+import {useState} from 'react';
 //import CardCityList from './CardCityList';
 
 //import CardDate from './CardDate';
@@ -7,21 +9,28 @@ import * as React from 'react';
 
 import {API_KEY, BASE_URL} from '../data/config';
 
+
+import PageContext from "../Context"
+
+
 interface CardProps {
 	title: string,	
-	cities: any,	
-	apiRequest: any,
-	dataPast?: any,	
+	cities?: any,	
+	apiRequest: (url:any) => void,
+	//setChoosenDay: any,
+//   handleChange : (e:any) => void
 }
 
 
 const CardPast = (props: CardProps) => {
-	const urlPast = `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=50.100193&lon=53.195873&dt=1621468800&appid=${API_KEY}&units=metric`
+	const [choosenDay, setChoosenDay] = React.useContext(PageContext);
+
+	const urlPast = 'data/2.5/onecall/timemachine?'
 	const [cityText, setCityText] =  React.useState('Select city')
 
-	const cityNames = []
+	const cityNames:any = []
 	for (const elem of props.cities) {		
-	    	cityNames.push(elem[0])		
+    	cityNames.push(elem)		
 	}
 
 	const [isShown, setIsShown] = React.useState(false);
@@ -33,10 +42,29 @@ const CardPast = (props: CardProps) => {
 	    setActive(!isActive);
     };
 	
-	const [input, setInput] = React.useState('');
 
-	console.log(props.dataPast[0])
+
+
+	const [inputDate, setInputDate] = React.useState('')
+	const [latInput, setLatInput] = React.useState('')
+	const [lonInput, setLonInput] = React.useState('')
 	
+	const pastDay = ''
+	
+	//console.log(props.dataPastArr)
+	// const makeRequest = () => {
+	// 	  	console.log('1', [choosenDay, setChoosenDay][0], latInput, lonInput)
+	// 	//console.log(inputDate, latInput, lonInput)
+	// 	//if ([choosenDay, setChoosenDay][0] && latInput) {
+	// 	//  	const formatedDate = parseInt((new Date(inputDate).getTime() / 1000).toFixed(0))
+		
+	// 		props.apiRequest(`${BASE_URL}${urlPast}lat=${latInput}&lon=${lonInput}&dt=${choosenDay}&appid=${API_KEY}&units=metric`)						         							
+	// 	// // 	//console.log(props.apiRequest(`${BASE_URL}${urlPast}lat=${latInput}&lon=${lonInput}&dt=${formatedDate}&appid=${API_KEY}&units=metric`))          								
+	// 	//}	
+		
+	// }
+
+
   	return(
 
 			<React.Fragment>
@@ -59,22 +87,27 @@ const CardPast = (props: CardProps) => {
 						</span>
 
 						{isShown &&
-							<ul className="forecast__cities">	
+							<ul className="forecast__cities" id="2">	
 						
 								{cityNames.map((elem: any) => {
 
 			          					return (
-			          						<li key={elem} 
+			          						<li key={elem[0]} 
 				          						onClick={		          							
 				          							(event: any) => {
-				          								setCityText(elem)	
+				          								setCityText(elem[0])	
 				          								setIsShown(!isShown)
-				          								toggleClass()   
-				          								props.apiRequest(urlPast)						         							
+				          								toggleClass() 
+				          								setLatInput(elem[1])
+				          								setLonInput(elem[2])
+				          								//makeRequest()
+				          								props.apiRequest(`${BASE_URL}${urlPast}lat=${elem[1]}&lon=${elem[2]}&dt=${choosenDay}&appid=${API_KEY}&units=metric`)						         							
+			          													    			
+				    									console.log('6', choosenDay)
 			          								}	          								
 			          							}          							 
 			          						>
-			          						{elem} </li>
+			          						{elem[0]} </li>
 			          					)						
 							            
 							        })			
@@ -85,22 +118,30 @@ const CardPast = (props: CardProps) => {
 
 					</div>		
 					
-					<div className="forecast__calendar">
+					<div className="forecast__calendar" >
 						<input 
-							type="text" 
+							type="date" 
 							placeholder="Select date"  
-							name="date" 
+							name="datePast" 
 							className="forecast__input" 
-							onFocus={(e) => {
-						        e.target.type ='date'
-						      }}
-							onBlur={(e) => {	
-						        e.target.type ='text'
-					    	}}
-					    	value={input} 
+							// onFocus={(e) => {
+						 //        e.target.type ='date'
+						 //      }}
+							// onBlur={(e) => {	
+						 //        e.target.type ='text'
+					  //   	}}
+					  		min="" 
 					    	onChange={(e) => {
-					    		setInput(e.target.value)
+					    		setInputDate(e.target.value)
+					    		setChoosenDay(parseInt((new Date(e.target.value).getTime() / 1000).toFixed(0)))				    			
+				    			console.log('4', e.target.value)				    			
+				    			console.log('5', choosenDay)
+					    		props.apiRequest(`${BASE_URL}${urlPast}lat=${latInput}&lon=${lonInput}&dt=${choosenDay}&appid=${API_KEY}&units=metric`)						         							
+			          				
+
 					    	}}
+
+					    	defaultValue={inputDate || ''}
 						/>	
 
 					</div>

@@ -1,9 +1,7 @@
 import * as React from 'react';
-//import CardCityList from './CardCityList';
-//import CardInner from './CardInner';
-//import Cities from '../data/Cities.json'
-
 import {API_KEY, BASE_URL} from '../data/config';
+
+
 
 interface CardProps {
 	title: string,
@@ -14,30 +12,28 @@ interface CardProps {
 
 
 const CardDaily = (props: CardProps) => {
-	const urlDaily = `https://api.openweathermap.org/data/2.5/onecall?lat=50.100193&lon=53.195873&exclude=current,minutely,hourly,alerts&appid=${API_KEY}&units=metric`
+	const urlDaily = 'data/2.5/onecall?'
 	const [cityText, setCityText] =  React.useState('Select city')
 
-	const cityNames = []
-	for (const elem of props.cities) {
-		//if (elem !== 'empty') {
-	    	cityNames.push(elem[0])
-		//}	
+	const cityNames:any = []
+	for (const elem of props.cities) {		
+    	cityNames.push(elem)		
 	}
 
 	const [isShown, setIsShown] = React.useState(false);
 	const toggleCities = () => setIsShown(!isShown);
 
 
- 	const [isActive, setActive] = React.useState(false);
+ 	const [isActive, setActive] =  React.useState(false);
 	const toggleClass = () => {
 	    setActive(!isActive);
     };
-
-
+	
 
   		return(
 
-			<div className="forecast ">
+			<React.Fragment>
+
 				<h3 className="forecast__title">
 			        {props.title}
 			    </h3>
@@ -56,22 +52,25 @@ const CardDaily = (props: CardProps) => {
 					</span>
 
 					{isShown &&
-						<ul className="forecast__cities">	
+						<ul className="forecast__cities" id="1">	
 					
 							{cityNames.map((elem: any) => {
 
 		          					return (
-		          						<li key={elem} 
+		          						<li key={elem[0]} 
 			          						onClick={		          							
 			          							(event: any) => {
-			          								setCityText(elem)	
+			          								 
+			          								setCityText(elem[0])	
 			          								setIsShown(!isShown)
-			          								toggleClass()   
-			          								props.apiRequest(urlDaily)						         							
+			          								toggleClass() 
+			          								props.apiRequest(`${BASE_URL}${urlDaily}lat=${elem[1]}&lon=${elem[2]}&exclude=current,minutely,hourly,alerts&appid=${API_KEY}&units=metric`)						         							
+		          													    			
+			    													         							
 		          								}	          								
 		          							}          							 
 		          						>
-		          						{elem} </li>
+		          						{elem[0]} </li>
 		          					)						
 						            
 						        })			
@@ -82,19 +81,7 @@ const CardDaily = (props: CardProps) => {
 
 				</div>			    
 
-
-			  	<div className="forecast__result forecast__result_full">
-						
-							<p className="forecast__date">45345  </p>	
-							<img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" className="forecast__img" />
-					    	<p className="forecast__temp">+17°</p>
-			    	
-
-			    	</div>	
-
-
-
-			</div>
+			</ React.Fragment>
 		)          
 
 
