@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/testRepo/static/css/main.bcafd976.chunk.css",
+    "main.js": "/testRepo/static/js/main.872889e1.chunk.js",
+    "main.js.map": "/testRepo/static/js/main.872889e1.chunk.js.map",
+    "runtime-main.js": "/testRepo/static/js/runtime-main.dc645f65.js",
+    "runtime-main.js.map": "/testRepo/static/js/runtime-main.dc645f65.js.map",
+    "static/js/2.f42bb821.chunk.js": "/testRepo/static/js/2.f42bb821.chunk.js",
+    "static/js/2.f42bb821.chunk.js.map": "/testRepo/static/js/2.f42bb821.chunk.js.map",
+    "static/js/3.11d3b74a.chunk.js": "/testRepo/static/js/3.11d3b74a.chunk.js",
+    "static/js/3.11d3b74a.chunk.js.map": "/testRepo/static/js/3.11d3b74a.chunk.js.map",
+    "index.html": "/testRepo/index.html",
+    "static/css/main.bcafd976.chunk.css.map": "/testRepo/static/css/main.bcafd976.chunk.css.map",
+    "static/js/2.f42bb821.chunk.js.LICENSE.txt": "/testRepo/static/js/2.f42bb821.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/testRepo/static/media/forecast-Bg-up.1b9e0722.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dc645f65.js",
+    "static/js/2.f42bb821.chunk.js",
+    "static/css/main.bcafd976.chunk.css",
+    "static/js/main.872889e1.chunk.js"
+  ]
+}
