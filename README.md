@@ -1,46 +1,29 @@
-# Getting Started with Create React App
+# Тестовое задание ReactBootcamp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React/Typescript приложение для показа погоды
 
-## Available Scripts
 
-In the project directory, you can run:
+## Проект на pages.github.com
 
-### `npm start`
+https://1611lush.github.io/testRepo/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Notes:**
 
-### `npm run build`
+1) Проект выполнен со стремлением к pixel-perfect, однако некоторые вещи можно и хотелось бы доработать в будущем. 
+Сейчас из-за временного ограничения оставлен <input type="date"> со стандартным placeholder-ом (по макету в placeholder текст).
+По ТЗ нельзя было использовать готовые решения, поэтому используется стилизованный список вместо селекта. Используется стилизованная прокрутка карточек погоды и прокрутка внутри выбора городов. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2) Вместо styled компонентов используется единый css файл (такое решение выбрано из-за того, что одностраничный проект на мой взгляд позволяет использовать уникальные классы по БЭМ. Но можно было бы использовать и scss.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3) Были сомнения из-за структуры приложения. В перспективе стоит переписать и вынести fetch запросы.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4) Были небольшие сложности с typescript, потому что ранее не писала приложения на ts, вероятно этот момент в будущем также можно доработать.  
 
-### `npm run eject`
+5) По ТЗ в первом блоке показывается прогноз на 7 дней. К сожалению, не успела уточнить, необходимо ли включать текущий день + неделю вперед, потому что АПИ отдает 8 дней. На данный момент оставлено 8 карточек. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
