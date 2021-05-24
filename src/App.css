@@ -360,7 +360,7 @@ body {
   background-color: var(--baseweak-color);
   box-shadow: 0px 4px 4px rgba(4, 5, 73, 0.25), 14px 14px 20px rgba(5, 6, 114, 0.2);
   border-radius: 8px;
-  padding: 50px 58px 89px 58px;
+  padding: 50px 58px 48px 58px;
   max-width: 660px;
   width: 100%;
   box-sizing: border-box;
@@ -399,8 +399,10 @@ body {
   margin-top: 54px;
 }
 
+
 .forecast__result_empty {
   margin-top: 63px;
+  margin-bottom: 42px;
 }
 
 .forecast__img {
@@ -461,6 +463,8 @@ body {
   background-image: url(./images/chevron-bottom.svg);
 }
 
+
+
 .forecast__select-up::after {
   transform: rotate(180deg);
   top: 13px;
@@ -493,7 +497,7 @@ body {
   box-sizing: border-box;
   box-shadow: 0px 2px 4px rgba(4, 5, 73, 0.16), 14px 14px 20px rgba(5, 6, 114, 0.08);
   border-radius: 8px;
-  padding: 12px 6px;
+  padding: 6px;
   width: 100%;
   max-width: 233px;
   font-family: Ubuntu;
@@ -502,7 +506,7 @@ body {
   font-size: 16px;
   line-height: 24px;
   color: var(--basestrong-color);
-  max-height: 130px;
+  max-height: 142px;
   height: auto;
   overflow-y: scroll;
   top: 60px;
@@ -588,10 +592,15 @@ body {
   background-color: var(--accent-color);
   border: 2px solid #373AF5;
   box-sizing: border-box;
-  //box-shadow: 0px 4px 4px rgba(4, 5, 73, 0.25), 14px 14px 20px rgba(5, 6, 114, 0.2);
   box-shadow: 0px 4px 4px rgba(4, 5, 73, 0.25);
   border-radius: 8px;
   padding: 20px;
+  min-height: 240px;
+}
+
+.forecast-past .forecast__result_full {
+  margin-bottom: 20px;
+  box-shadow: 0px 4px 4px rgba(4, 5, 73, 0.25), 14px 14px 20px rgba(5, 6, 114, 0.2);
 }
 
 .forecast__inputs > div {
@@ -642,7 +651,7 @@ body {
   margin-left: -28px;
   padding-right: 23px;
   margin-right: -30px;
-  margin-bottom: -56px;
+  margin-bottom: 0;
 }
 
 .slider__inner {
@@ -650,7 +659,8 @@ body {
   flex-wrap: nowrap;
   overflow-x: hidden;
   position: relative;
-  padding: 0px 0 35px 0;
+  padding: 0px 0 20px 0;
+  margin-bottom: 0px;
 }
 
 .slider__left,
@@ -688,7 +698,8 @@ body {
   margin-right: 10px;
 }
 
-.slider .forecast__img {
+.slider .forecast__img,
+.forecast-past .forecast__result:not(.forecast__result_empty) .forecast__img  {
   width: 120px;
   height: 120px;
   margin: 15px auto 15px;
@@ -753,7 +764,7 @@ body {
   }
 
   .forecast {
-    padding: 32px 24px 77px 24px;
+    padding: 32px 24px 45px 24px;
   }
 
   .forecast-past {
@@ -779,11 +790,11 @@ body {
   }
 
   .forecast__input {
-    margin-bottom: 33px;
+    margin-bottom: 23px;
   }
 
   .forecast__img {
-    margin: 0px auto 24px;
+    margin: 10px auto 24px;
   }
 
   .forecast__result_full {
@@ -816,6 +827,7 @@ body {
 
   .forecast__result_empty {
     margin-top: 0px;
+    margin-bottom: 17px;
   }
 
   .slider {
@@ -824,7 +836,11 @@ body {
   }
 
   .forecast__title {
-    margin-bottom: 23px;
+    //margin-bottom: 23px;
+  }
+
+  .slider__inner {
+    padding-bottom: 7px
   }
 
   .slider__left {

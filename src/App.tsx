@@ -1,145 +1,131 @@
 import * as React from 'react';
 import './App.css';
 import Header from './layout/Header';
-//import Wrapper from './components/Wrapper';
 import Footer from './layout/Footer';
-//import Main from './components/Main';
-
-//import { apiRequest } from './helpers'
 import CardDaily from './components/CardDaily';
 import CardPast from './components/CardPast';
-
 import InnerPast from './components/InnerPast';
-
+import InnerDaily from './components/InnerDaily';
 import Empty from './layout/Empty';
 
+import {cities} from './data/config';
 
-import {API_KEY, BASE_URL, cities} from './data/config';
-
-import CardInner from './components/CardInner';
-import PageContext from "./Context"
 
 
 
 const App = () => {
+  const [error, setError] = React.useState('')  
+  const [errorPast, setErrorPast] = React.useState('')
+  const [dataDaily, setDataDaily] = React.useState<any>(null)
+  const [dataPast, setDataPast] = React.useState<any>(null)
 
-  const [city, setCity] = React.useState(null) 
-  const [error, setError] = React.useState('')
-  const [dataDaily, setDataDaily] = React.useState<any>(null)//[Array(), Array(), Array()]
-  const [dataPast, setDataPast] = React.useState<any>(null)//(['', 0, ''])
-  const [choosenDay, setChoosenDay] = React.useState<any>(null)
+  const datesArr: number[] = []
+  const tempArr: number[] = []
+  const iconArr: string[] = []
 
-
-
-  const datesArr = Array()
-  const tempArr = Array()
-  const iconArr = Array()
-
-    const apiRequest = (url: any) => {
+  const apiRequest = (url: string) => {
     return fetch(url)
       .then(response => {
-        if (!response.ok) {          
-          console.log(response)    
+        if (!response.ok) {        
           setError(response.statusText)
         }
         return response.json() 
       })  
       .then(result => { 
-        if (result.daily) {      
+        if (result.daily) {         
           for (let i = 0; i<=7; i++) {
             datesArr.push(result.daily[i].dt) 
             tempArr.push(Math.round(result.daily[i].temp.day))           
             iconArr.push(result.daily[0].weather[0].icon) 
-          }
+          } 
+          setError('')
           setDataDaily([          
            datesArr, 
            tempArr,
            iconArr
-         ])          
-          console.log('api 1', result.daily) 
-        }            
+         ])   
+        }
+      })
+  }
+
+  const apiRequestPast = (url: string) => {
+    return fetch(url)
+      .then(response => {
+        if (!response.ok) { 
+          setErrorPast(response.statusText)
+        }
+        return response.json() 
+      })  
+      .then(result => { 
         if (result.current) {
+          setErrorPast('')
           setDataPast([
             result.current.dt,
             Math.round(result.current.temp),
             result.current.weather[0].icon
           ])
-          //setChoosenDay(result.current.dt)  
-
-          console.log('api 2', result.current)        
-        }  
+        }
       })
   }
+   
 
 
   const showDaily = () => {
     if (error || !dataDaily) {
       return  <Empty/> 
     }
-    return  <InnerPast dataResult={dataDaily} />
+    return  <InnerDaily dataResult={dataDaily} />
   }
 
   const showPast = () => {
-    if (error || !dataPast) {
+    if (errorPast || !dataPast) {
       return  <Empty/> 
     }    
     return  <InnerPast dataResult={dataPast} />
   }
 
-  
- 
-
-  
-
 
 
   return (
+
     <div className="page">
- 
 
         <Header />
 
+        <section className="content">   
 
+          <div className="forecast">
 
-        <section className="content">        
-       
-              <PageContext.Provider value={[choosenDay, setChoosenDay]}>
+            <CardDaily 
+              title="7 Days Forecast"
+              cities={cities} 
+              apiRequest={apiRequest} 
+             ></CardDaily>
 
-                  <div className="forecast">
-                    <CardDaily 
-                      title="7 Days Forecast"
-                      cities={cities} 
-                      apiRequest={apiRequest} 
-                      dataDaily={dataDaily}></CardDaily>
-                  
+            {showDaily()}
 
-                    {showDaily()}
+          </div>
 
-                  </div>
+          <div className="forecast forecast-past">
 
-                <div className="forecast forecast-past">
-                  <CardPast 
-                    title="Forecast for a Date in the Past" 
-                    cities={cities}  
-                    apiRequest={apiRequest}
-                    ></CardPast>
-                  
-                   
-                    {showPast()}
+            <CardPast 
+              title="Forecast for a Date in the Past" 
+              cities={cities}  
+              apiRequest={apiRequestPast}
+            ></CardPast>
+             
+            {showPast()}
 
-                </div>
-
-             </PageContext.Provider>
+          </div>
 
          </section>
 
-
-
-  
       <Footer />
 
     </div>
+
   )
+
 }  
 
 export default App
