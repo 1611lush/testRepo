@@ -58,7 +58,7 @@ const InnerPast = (props: InnerPastProps) => {
 		    		<div className="slider__inner" style = {{marginLeft : margin}}>
 			    	
 	      				{weatherProps}
-			    		{margin}	
+			    		
 
 			    	</div>
 
